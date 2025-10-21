@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/home.css') }}">
+</head>
+</head>
+<body>
+
+    <div class="nav-container">
+
+            <div class="title">
+                <h1>Routify ILOILO</h1>
+            </div>
+
+            <div class="links">
+            <a href="{{url_for('user.home_page')}}">Home</a>
+            <a href="{{url_for('user.route_page')}}">Routes</a>
+            <a href="{{url_for('auth.logout')}}">logout</a>
+            </div>
+
+        </div><br></br>
+
+    <form action="{{url_for ('user.home_page')}}" method ="GET">
+            <input type = "text" name="query" placeholder="Search routes..." style="padding:8px; border-radius:5px; width:200px;">
+            <button type="submit">Search</button>
+        </form><br>
+
+        <p>Find your way to Explore to the City of Love </p>
+        <h2>ILOILO CITY</h2><br></br>
+
+        <p>Locate Different Place Tourist Spot</p>
+    
+    
+    <script>
+
+        // document.addEventListener("DOMContentLoaded", () => {
+        //     const map = new google.maps.Map(document.getElementById("map"),{
+        //         zoom: 11,
+        //         center: iloilo,
+        //         mapTypeId: "roadmap",
+        //     });
+        //     console.log()
+        // });
+        
+    // function initMap() {
+    //     const iloilo = {lat: 10.7202, lng: 122.5621};
+
+    //     const map = new google.maps.Map(document.getElementById("map"),{
+    //         zoom: 11,
+    //         center: iloilo,
+    //         mapTypeId: "roadmap",
+    //     });
+
+    //     routesData.forEach(route =>{
+    //         const start = { lat: parseFloat(route.start.lat), lng: parseFloat(route.start_lng)};
+    //         const end = {lat: parseFloat(route.end_lat), lng: parseFloat(route.end_lng) };
+    //     });
+
+    //     const jeepneyRoute = new google.maps.Polyline({
+    //         path: [start, end],
+    //         geodesic: true,
+    //         strokeColor: "#FF9900",
+    //         strokeOpacity: 1.0,
+    //         strokeWeight: 5,
+    //     });
+
+    //     const endMarker = new google.maps.Marker({
+    //         position: end,
+    //         map,
+    //         title: '${route.route_name} (end)',
+    //     });
+
+    //     const infoWindow = new google.maps.InfoWindow({
+    //         content: '<b>&{route.route_name}</b>'
+    //     });
+
+    //     startMarker.addListener("click", ()=> infoWindow.open(map,startMarker));
+    //     endMarker.addListener("click", () => infoWindow.open(open, endMarker));
+    // }
+    </script>
+</body>
+</html>     

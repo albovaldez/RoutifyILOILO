@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Routify Iloilo - Find Your Route</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+  <!-- Routing Machine CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css"
+  />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #f7f7f7;
+      text-align: center;
+    }
+
+    #map {
+      height: 600px;
+      width: 100%;
+    }
+
+    h1 {
+      color: #0097a7;
+      margin: 20px 0;
+    }
+
+    #destinationInput {
+      padding: 10px;
+      width: 250px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    #goButton {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4db6ac;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #goButton:hover {
+      background-color: #399b91;
+    }
+  </style>
+</head>
+<body>
+  <h1>Routify Iloilo 🚍</h1>
+  <p>Enter your destination:</p>
+  <input type="text" id="destinationInput" placeholder="e.g. SM City Iloilo" />
+  <button id="goButton">Find Route</button>
+
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Routing Machine JS -->
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+  <script>
+    let map = L.map("map").setView([10.7202, 122.5621], 13);
+    let userMarker;
+    let routingControl;
+
+    // Base map layer
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
+
+    // Step 1: Get user's location
+    let userLat, userLng;
+
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          userLat = position.coords.latitude;
+          userLng = position.coords.longitude;
+
+          userMarker = L.marker([userLat, userLng])
+            .addTo(map)
+            .bindPopup("📍 You are here!")
+            .openPopup();
+
+          map.setView([userLat, userLng], 14);
+        },
+        (error) => {
+          alert("⚠️ Location access denied. Please enable it to use routing.");
+        }
+      );
+    }
+
+    // Step 2: When user enters destination
+    document.getElementById("goButton").addEventListener("click", () => {
+      const destination = document.getElementById("destinationInput").value;
+
+      if (!destination) {
+        alert("Please enter a destination!");
+        return;
+      }
+
+      if (!userLat || !userLng) {
+        alert("Waiting for your location...");
+        return;
+      }
+
+      // Step 3: Convert destination name to coordinates (geocoding)
+      fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+          destination
+        )}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.length === 0) {
+            alert("Destination not found!");
+            return;
+          }
+
+          const destLat = parseFloat(data[0].lat);
+          const destLng = parseFloat(data[0].lon);
+
+          // Step 4: Show route from user to destination
+          if (routingControl) {
+            map.removeControl(routingControl);
+          }
+
+          routingControl = L.Routing.control({
+            waypoints: [
+              L.latLng(userLat, userLng),
+              L.latLng(destLat, destLng),
+            ],
+            routeWhileDragging: true,
+            show: false,
+          }).addTo(map);
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Error finding destination.");
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/about.css') }}">
+</head>
+<body>
+
+    <nav class="nav-container">
+        <div class="logo">Routify ILOILO</div>
+        <div class="links">
+            <a href="{{url_for('combo.about_page')}}">About</a>
+            <a href="{{url_for('combo.feature_page')}}">Features</a>
+            <a href="{{url_for('combo.contact_page')}}">Contacts</a>
+        </div>
+    </nav>
+
+    <h1> about routify </h1>
+    <a href="{{url_for('combo.landing_page')}}">BACK</a>
+</body>
+</html>     

@@ -1,0 +1,25 @@
+ .nav-container{
+            border-radius: 20px;
+            background-color: #8ed6db;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 30px 20px; /* top right-left bottom */
+             /* space between items */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            color: #0c0a0a;            
+        }
+        h1 {
+            position:center;
+            text-align:50px ;
+            margin: 30;
+            color: #0c0a0a;
+
+        }
+
+        .links {
+            text-align:center ;
+            display: flex;
+            gap: 100px;
+
+        }

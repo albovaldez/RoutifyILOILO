@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routify ILOILO</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/landing_page.css') }}">
+</head>
+
+<body>
+    
+    <nav class="nav-container">
+        <div class="logo">Routify ILOILO</div>
+        <div class="links">
+            <a href="{{url_for('combo.about_page')}}">About</a>
+            <a href="{{url_for('combo.feature_page')}}">Features</a>
+            <a href="{{url_for('combo.contact_page')}}">Contacts</a>
+        </div>
+    </nav>
+
+    <section class="display">
+        <div class="display-text">
+            <h2>WELCOME TO</h2>
+            <h1>Routify Iloilo</h1>
+            <p>Find your route.Ride smart around iloilo city.</p>
+            <a href="{{url_for('auth.login')}}" class="login-btn">Log in</a>
+        </div>
+
+        <div class = "image-container">
+            <img src="{{ url_for('static', filename='image/jeepny.jpg')}}" alt="Jeepney Route">
+        </div>
+    </section>
+
+    <section class = "about">
+        <p>
+            Routify Iloilo  helps commuters, student, and tourists navigate the city with ease.It shows 
+            jeepney and bus routes, pick-up points, and directions for faster and more convenient trip.
+        </p>
+    </section>
+        
+</body>
+</html>     `

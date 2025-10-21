@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='style/route_page.css') }}">
+</head>
+<body>
+
+    <div class="nav-container">
+        <div class="title">
+            <h1>Routify ILOILO</h1>
+        </div>
+
+        <div class="links">
+            <a href="{{url_for('user.home_page')}}">Home</a>
+            <a href="{{url_for('user.route_page')}}">Routes</a>
+            <a href="{{url_for('auth.logout')}}">logout</a>
+            </div>
+        </div> <br></br>
+
+        <div id = "search-bar">
+            <form action ="/user/routes">
+                <input type = "text" name="query" placeholder="Search route..." value = "{{request.args.get('query','')}}">
+                <button type = "submit"> Search</button>
+            </form>
+        </div><br></br>
+
+
+        <div id="map"></div>
+
+        <div class = "route-list">
+            {%for route in routes%}
+                <div class="route-item">
+                    <strong>{{ route.route_name }}</strong><br>
+                    {{ route.description}}
+                </div>
+            {%else%}
+                    <p>No routes found.</p>
+            {%endfor%}
+        </div>
+
+    <script src="{{ url_for('static', filename='js/map.js') }}"></script>       
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXOQar8Ai-ZSGzlkuUoO1TyPRPr_A8Qj8&callback=initMap">
+    </script>
+
+            
+
+    <h1>routes </h1>
+    <a href="{{url_for('user.home_page')}}">BACK</a>
+</body>
+</html>     
