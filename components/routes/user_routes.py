@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect, url_for, flash, request
+from flask import Blueprint, render_template, session, redirect, url_for, flash, request, jsonify
 from components.db import get_connection
 
 user=Blueprint("user",__name__)
@@ -13,18 +13,26 @@ def home_page():
 
 @user.route("/routes")
 def route_page():
-    query = request.args.get("query")
+    return render_template("routes_page.html")
+
+@user.route('/search', methods=['GET'])
+def search():
+    location = request.args.get('q','').strip().lower()
 
     connection = get_connection()
     cursor = connection.cursor()
 
-    if query:
-        cursor.execute("SELECT * FROM jeepny_route WHERE route_name LIKE %s", (f"%{query}%"))
-    else:
-        cursor.execute("SELECT * FROM jeepny_route")
+    sql = """
+        SELECT id, jeep_name, fare, distance_km
+        FROM jeepny
+        WHERE LOWER(stops) LIKE %s
+    """
+    cursor.execute(sql, [f"%{location}%"])
+    jeeps=cursor.fetchall()
 
-    routes = cursor.fetchall()
     cursor.close()
     connection.close()
-    
-    return render_template("routes_page.html", routes = routes )
+
+    return jsonify(jeeps)
+
+

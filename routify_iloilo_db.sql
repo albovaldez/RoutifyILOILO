@@ -16,6 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `jeepny`
+--
+
+DROP TABLE IF EXISTS `jeepny`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jeepny` (
+  `id` int NOT NULL,
+  `jeep_name` varchar(200) NOT NULL,
+  `stops` varchar(200) NOT NULL,
+  `fare` int NOT NULL,
+  `distance_km` decimal(5,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jeepny`
+--
+
+LOCK TABLES `jeepny` WRITE;
+/*!40000 ALTER TABLE `jeepny` DISABLE KEYS */;
+INSERT INTO `jeepny` VALUES (1,'jaro ','jaro-plaza',12,5.00),(2,'villa ','villa supermart',15,5.00),(3,'tagbak ','tagbak terminal ',25,10.00);
+/*!40000 ALTER TABLE `jeepny` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `jeepny_route`
 --
 
@@ -81,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-22 18:07:20
+-- Dump completed on 2025-10-23 18:45:45

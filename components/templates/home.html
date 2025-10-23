@@ -22,10 +22,10 @@
 
         </div><br></br>
 
-    <form action="{{url_for ('user.home_page')}}" method ="GET">
-            <input type = "text" name="query" placeholder="Search routes..." style="padding:8px; border-radius:5px; width:200px;">
-            <button type="submit">Search</button>
-        </form><br>
+    <input type="text" id="searchInput" placeholder="Enter location (e.g., Jaro Plaza)">
+    <button onclick="searchLocation()">Search</button>
+    <div class="jeep-results" id="results"></div>
+    <br>
 
         <p>Find your way to Explore to the City of Love </p>
         <h2>ILOILO CITY</h2><br></br>
@@ -79,6 +79,31 @@
     //     startMarker.addListener("click", ()=> infoWindow.open(map,startMarker));
     //     endMarker.addListener("click", () => infoWindow.open(open, endMarker));
     // }
+
+    async function searchLocation() {
+      const query = document.getElementById('searchInput').value.trim();
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = "Searching...";
+
+      const res = await fetch(`/user/search?q=${encodeURIComponent(query)}`);
+      const data = await res.json();
+
+      if (data.length === 0) {
+        resultsDiv.innerHTML = "<p>No available jeepneys found for that location.</p>";
+        return;
+      }
+
+      resultsDiv.innerHTML = "";
+      data.forEach(jeep => {
+        const btn = document.createElement('button');
+        btn.className = "jeep-btn";
+        btn.innerHTML = `
+          <strong>${jeep.jeepney_name}</strong> – ${jeep.route}<br>
+          Fare: ₱${jeep.fare} | Distance: ${jeep.distance_km} km
+        `;
+        resultsDiv.appendChild(btn);
+      });
+    }
     </script>
 </body>
 </html>     
