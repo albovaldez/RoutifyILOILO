@@ -39,7 +39,7 @@
     justify-content: center;
     align-items:center;
     gap: 10px;
-    width:90%;
+    width:100%;
     margin: 40px auto;
     padding: 5px;
 }
@@ -49,13 +49,15 @@
 }
 
 .display-text h2{
+    text-align:center;
     font-size: 50px;
     color:#000000;
-    margin-bottom: 5px;
+    margin-bottom: 0.1em;
     margin-left: 300px;
 }
 
 .display-text h1{
+    text-align:center;
     font-size: 40px;
     color:#0097a7;;
     margin-top: 0px;
@@ -63,8 +65,11 @@
 }
 
 .display-text p{
+    text-align:center;
+    padding: 10px 20px;
+    border-radius: 10px;
     font-size:16px;
-    margin: 15px 0;
+    margin: 0.2em 0;
     color: #111;
     margin-left: 300px;
     justify-content: center;
@@ -73,7 +78,7 @@
 .login-btn{
     background-color: #4db6ac; 
     color: white;
-    padding: 10px 25px;
+    padding: 15px 45px;
     border: none;
     border-radius: 25px;
     text-decoration: none;
@@ -88,8 +93,11 @@
 }
 
 .image-container img{
-    width: 1000px;
-    height: auto;
+    background-size:cover;
+    width: 1100px;
+    height: 300p;
+    position:ralative;
+    top: -50px;
     transition: tranform 0.3s ease;
     
 }
