@@ -7,213 +7,145 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style/home.css') }}">
 
   <!-- 🗺️ Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" >
 
-  <style>
-    /* Keep your styles */
-    body {
-      font-family: "Poppins", sans-serif;
-      background-color: #f8fbfb;
-      color: #333;
-      margin: 0;
-      padding: 20px;
-    }
-    .nav-container {
-      background-color: #cce6e8;
-      border-radius: 10px;
-      padding: 15px 40px;
-      margin-bottom: 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .title h1 { margin: 0; color: #004d4d; }
-    .links a { margin-left: 15px; text-decoration: none; color: #004d4d; font-weight: bold; }
-    .links a:hover { color: #008080; }
-    #searchInput {
-      width: 300px; padding: 10px; border: 1px solid #aaa;
-      border-radius: 8px; outline: none;
-    }
-    button {
-      padding: 10px 15px; background-color: #00a3a3;
-      border: none; color: white; font-weight: bold;
-      border-radius: 8px; cursor: pointer; margin-left: 8px;
-    }
-    button:hover { background-color: #007f7f; }
-    .jeep-results { margin-top: 25px; }
-    .jeep-btn {
-      display: block; width: 100%; background-color: #007bff;
-      color: white; border: none; border-radius: 8px;
-      padding: 12px; margin-bottom: 10px; cursor: pointer;
-      text-align: left; transition: background-color 0.2s;
-    }
-    .jeep-btn:hover { background-color: #0056b3; }
-    .footer-text { margin-top: 40px; text-align: center; color: #555; }
-
-    /* 🟩 Map Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background: white;
-      border-radius: 10px;
-      width: 90%; max-width: 800px;
-      height: 500px;
-      position: relative;
-      padding: 10px;
-    }
-    #map {
-      width: 100%; height: 100%;
-      border-radius: 10px;
-    }
-    .close-btn {
-      position: absolute; top: 10px; right: 15px;
-      background: #ff4d4d; color: white;
-      border: none; padding: 5px 10px;
-      border-radius: 5px; cursor: pointer;
-    }
-  </style>
 </head>
 <body>
-
-  <!-- 🧭 Navbar -->
   <div class="nav-container">
-    <div class="title">
-      <h1>Routify ILOILO</h1>
-    </div>
-    <div class="links">
-      <a href="{{ url_for('user.home_page') }}">Home</a>
-      <a href="{{ url_for('user.route_page') }}">Routes</a>
-      <a href="{{ url_for('auth.logout') }}">Logout</a>
+  <div class="title"><h1>Routify ILOILO</h1></div>
+
+  <div class="links">
+    <a href="{{ url_for('user.home_page') }}">Home</a>
+    <a href="{{ url_for('user.route_page') }}">Routes</a>
+
+
+    <!-- 👤 Profile Dropdown (Right side of Logout) -->
+    <div class="profile-dropdown">
+      <img src="{{ url_for('static', filename='image/profile.jpg') }}" alt="User" class="profile-img">
+      <div class="dropdown-content">
+        <a href="{{ url_for('user.profile') }}">View Profile</a>
+        <a href="{{ url_for('user.setting_page') }}">Account Settings</a>
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+      </div>
     </div>
   </div>
+</div>
+
+  <section class="hero-section">
+    <img src="{{ url_for('static', filename='image/homeimage.jpg') }}" alt="Iloilo City">
+    <div class="hero-text">ILOILO CITY</div>
+  </section>
 
   <!-- 🧭 Search Bar -->
-  <h2>Find Jeepneys Going to Your Location</h2>
-  <input type="text" id="searchInput" placeholder="Enter location (e.g., Jaro Plaza)">
+  <div class="search-section">
+    <h2>Find Jeepneys Going to Your Location</h2>
+    <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Enter location (e.g., Jaro Plaza)">
   <button onclick="searchLocation()">Search</button>
+  </div>
 
-  <!-- 🚌 Jeep Results -->
+  <!-- Jeep Results -->
   <div class="jeep-results" id="results"></div>
 
-  <!-- ❤️ Footer -->
-  <div class="footer-text">
-    <p>Find your way and explore the City of Love – Iloilo City 🏙️</p>
+
+
+
+  <section class="tourist-section">
+  <h2>Locate Different Tourist Spots</h2>
+  <div class="tourist-grid">
+    <div class="spot">
+      <img src="{{ url_for('static', filename='image/museo.jpg') }}" alt="Museo Iloilo">
+      <h3>Museo Iloilo</h3>
+      <p>Location: PH39+4C2, Iloilo City Proper, Iloilo City, 5000 Iloilo</p>
+    </div>
+
+    <div class="spot">
+      <img src="{{ url_for('static', filename='image/libertad.jpg') }}" alt="Plaza Libertad">
+      <h3>Plaza Libertad</h3>
+      <p>Red Plaza Building, Plaza Libertad Zamora St, Iloilo City Proper, Iloilo City, 5000 Iloilo</p>
+    </div>
+
+    <div class="spot">
+      <img src="{{ url_for('static', filename='image/jarometropolitant.jpg') }}" alt="Jaro Metropolitan Cathedral">
+      <h3>Jaro Metropolitan Cathedral</h3>
+      <p>PHF4+QH3, Jaro, Iloilo City, 5000 Iloilo</p>
+    </div>
+
+    <div class="spot">
+      <img src="{{ url_for('static', filename='image/river.jpg') }}" alt="Esplanade River Side">
+      <h3>Esplanade River Side</h3>
+      <p>PG2X+XJ6, Iloilo River, City, Iloilo River Esplanade, Iloilo City, Iloilo</p>
+    </div>
+
+    <div class="spot">
+      <img src="{{ url_for('static', filename='image/villabaybay.jpg') }}" alt="Villa Baybay">
+      <h3>Villa Baybay</h3>
+      <p>Villa Baybay, Iloilo City Proper, Iloilo City, 5000 Iloilo</p>
+    </div>
+
+    <div class="spot">
+      <img src="{{ url_for('static', filename='image/redhouse.jpg') }}" alt="Red Plaza Building">
+      <h3>Red Plaza Building</h3>
+      <p>Red Plaza Building, Plaza Libertad Zamora St, Iloilo City Proper, Iloilo City, 5000 Iloilo</p>
+    </div>
+
+    <div class="spot">
+      <img src="{{ url_for('static', filename='image/icc.jpg') }}" alt="ICC">
+      <h3>ICC</h3>
+      <p>Zamora St, Iloilo City, 5000 Iloilo</p>
+    </div>
+
+    <div class="spot">
+      <img src="{{ url_for('static', filename='image/casa.jpg') }}" alt="Calle Real">
+      <h3>Calle Real Businnes Center</h3>
+      <p>MHW9+5WV, Iznart St, Iloilo City Proper, Iloilo City, 5000 Iloilo</p>
+    </div>
   </div>
+</section>
+
+
+<!-- 🏙 About This Guide Section -->
+  <section class="about-section">
+    <div class="about-box">
+      <h3>About this Guide</h3>
+      <p>
+        Iloilo City, known as the Heart of the Philippines, is a vibrant destination that combines rich history,
+        cultural charm, and modern development. From its centuries-old churches and heritage buildings to its lively
+        markets and flavorful local cuisine, the city offers a unique and welcoming atmosphere for visitors.
+        Exploring Iloilo is also easy with its public transportation system. Jeepneys, taxis, and ride-hailing
+        services are readily available, making it simple to get around and experience everything the city has to offer.
+      </p>
+      <p>
+        This guide provides jeepney route information to help both locals and tourists in going around the city.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- 📜 Footer -->
+  <footer class="footer">
+    <p>© 2025 Routify Iloilo. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Home</a> |
+      <a href="#">About</a> |
+      <a href="#">Route</a> |
+      <a href="#">Features</a> |
+      <a href="#">Contact</a>
+    </div>
+  </footer>
 
   <!-- 🗺️ Map Modal -->
   <div class="modal" id="mapModal">
     <div class="modal-content">
-      <button class="close-btn" onclick="closeModal()">Close</button>
       <div id="map"></div>
+      <button class="close-btn" onclick="closeModal()">Close</button>
     </div>
   </div>
 
   <!-- 🧠 Leaflet Scripts -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
-
-  <script>
-    let userLat, userLng;
-    let map, routingControl;
-
-    // Get user's location
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        userLat = pos.coords.latitude;
-        userLng = pos.coords.longitude;
-      });
-    }
-
-    // 🔍 Search location and display jeepneys
-    async function searchLocation() {
-      const query = document.getElementById("searchInput").value.trim();
-      const resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "🔎 Searching...";
-
-      if (!query) {
-        resultsDiv.innerHTML = "<p>Please enter a location first.</p>";
-        return;
-      }
-
-      try {
-        // Get coordinates of searched location
-        const geoRes = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`);
-        const geoData = await geoRes.json();
-        if (geoData.length === 0) {
-          resultsDiv.innerHTML = "<p>Location not found.</p>";
-          return;
-        }
-        const lat = parseFloat(geoData[0].lat);
-        const lng = parseFloat(geoData[0].lon);
-
-        // Fetch jeepneys from backend using lat/lng
-        const res = await fetch(`/user/search?lat=${lat}&lng=${lng}`);
-        const data = await res.json();
-
-        if (!Array.isArray(data) || data.length === 0) {
-          resultsDiv.innerHTML = "<p>No available jeepneys found near this location.</p>";
-          return;
-        }
-
-        // Display jeepneys as buttons
-        resultsDiv.innerHTML = "";
-        data.forEach((jeep) => {
-          const btn = document.createElement("button");
-          btn.className = "jeep-btn";
-          btn.innerHTML = `
-            <strong>${jeep.jeepney_name}</strong> – ${jeep.route}<br>
-            Fare: ₱${jeep.fare} | Distance: ${jeep.distance_km} km
-          `;
-          btn.onclick = () => openMapModal(lat, lng, jeep);
-          resultsDiv.appendChild(btn);
-        });
-      } catch (err) {
-        console.error(err);
-        resultsDiv.innerHTML = "<p>⚠️ Error searching for jeepneys.</p>";
-      }
-    }
-
-    // 🗺️ Open map modal and show route
-    function openMapModal(destLat, destLng, jeep) {
-      const modal = document.getElementById("mapModal");
-      modal.style.display = "flex";
-
-      // Initialize map if not yet created
-      if (!map) {
-        map = L.map("map").setView([destLat, destLng], 13);
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          maxZoom: 19,
-          attribution: "&copy; OpenStreetMap contributors"
-        }).addTo(map);
-      }
-
-      // Remove previous route
-      if (routingControl) map.removeControl(routingControl);
-
-      // Add route from user location to jeepney’s location (or destination)
-      routingControl = L.Routing.control({
-        waypoints: [
-          L.latLng(userLat, userLng),
-          L.latLng(destLat, destLng)
-        ],
-        routeWhileDragging: true
-      }).addTo(map);
-    }
-
-    // Close modal
-    function closeModal() {
-      document.getElementById("mapModal").style.display = "none";
-      if (routingControl) map.removeControl(routingControl);
-    }
-  </script>
+  <script src="{{ url_for('static', filename='js/home.js') }}"></script>
 </body>
 </html>

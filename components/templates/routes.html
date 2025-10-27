@@ -5,150 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Routify ILOILO – All Jeepneys</title>
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='style/home.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/route.css') }}" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
-
-  <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      background-color: #f8fbfb;
-      color: #333;
-      margin: 0;
-      padding: 20px;
-    }
-
-    .nav-container {
-      background-color: #cce6e8;
-      border-radius: 10px;
-      padding: 15px 40px;
-      margin-bottom: 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    #map {
-      height: 600px;
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    /* 🟩 Jeepney list at bottom */
-    .jeep-list {
-      margin-top: 25px;
-      background: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .jeep-item {
-      margin-bottom: 10px;
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-      cursor: pointer;
-    }
-
-    .jeep-item:hover {
-      background-color: #eef9f9;
-    }
-
-    .footer-text {
-      margin-top: 40px;
-      text-align: center;
-      color: #555;
-    }
-
-    /* 🟦 Legend (interactive buttons) */
-    .legend {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      padding: 10px 15px;
-      font-size: 14px;
-      max-height: 240px;
-      overflow-y: auto;
-      z-index: 1000;
-      width: 180px;
-    }
-
-    .legend h4 {
-      margin: 0 0 8px;
-      text-align: center;
-      font-weight: 600;
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 6px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .legend-item:hover {
-      background: #eef9f9;
-      border-radius: 6px;
-    }
-
-    .color-box {
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      margin-right: 8px;
-    }
-
-    .show-all-btn {
-      display: block;
-      width: 100%;
-      background: #00796b;
-      color: white;
-      text-align: center;
-      border: none;
-      border-radius: 8px;
-      padding: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .show-all-btn:hover {
-      background: #009688;
-    }
-  </style>
 </head>
 <body>
-  <!-- 🧭 Navbar -->
-  <div class="nav-container">
-    <div class="title"><h1>Routify ILOILO</h1></div>
-    <div class="links">
-      <a href="{{ url_for('user.home_page') }}">Home</a>
-      <a href="{{ url_for('user.route_page') }}">Routes</a>
-      <a href="{{ url_for('auth.logout') }}">Logout</a>
+
+
+ <!-- 🧭 Navbar -->
+<div class="nav-container">
+  <div class="title"><h1>Routify ILOILO</h1></div>
+
+  <div class="links">
+    <a href="{{ url_for('user.home_page') }}">Home</a>
+    <a href="{{ url_for('user.route_page') }}">Routes</a>
+
+
+    <!-- 👤 Profile Dropdown (Right side of Logout) -->
+    <div class="profile-dropdown">
+      <img src="{{ url_for('static', filename='image/profile.jpg') }}" alt="User" class="profile-img">
+      <div class="dropdown-content">
+        <a href="{{ url_for('user.profile') }}">View Profile</a>
+        <a href="{{ url_for('user.setting_page') }}">Account Settings</a>
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+      </div>
     </div>
   </div>
+</div>
+
+
+
 
   <h2>🚌 All Jeepneys in Iloilo City</h2>
 
   <!-- 🗺️ Map -->
   <div id="map"></div>
 
-  <!-- 📘 Legend (Interactive) -->
+  <!-- 📘 Legend -->
   <div class="legend" id="legend">
     <h4>Jeepney Routes</h4>
     <button class="show-all-btn" id="showAllBtn">Show All Routes</button>
   </div>
 
   <!-- 📋 Jeepney Info List -->
-  <div class="jeep-list" id="jeepList">
+  <div class="jeep-list" id="jeepList" data-jeepneys='{{ jeepneys | tojson | safe }}'>
     {% for jeep in jeepneys %}
       <div class="jeep-item" data-jeep="{{ jeep.jeepney_name }}">
         <strong>{{ jeep.jeepney_name }}</strong> – {{ jeep.route }}<br />
@@ -157,97 +60,12 @@
     {% endfor %}
   </div>
 
+  <!-- ❤️ Footer -->
   <div class="footer-text">
     <p>Explore all jeepneys in the City of Love – Iloilo City 🏙️</p>
   </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // 🎨 Fixed colors for each jeepney
-      const jeepneyColors = [
-        "#1E88E5", // Blue
-        "#43A047", // Green
-        "#E53935", // Red
-        "#FB8C00", // Orange
-        "#8E24AA", // Purple
-      ];
-
-      const map = L.map("map", {
-        maxBounds: [
-          [10.63, 122.45],
-          [10.83, 122.65],
-        ],
-        maxBoundsViscosity: 1.0,
-      }).setView([10.7202, 122.5621], 12);
-
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "© OpenStreetMap contributors",
-      }).addTo(map);
-
-      const jeepneys = JSON.parse('{{ jeepneys | tojson | safe }}');
-      const routeLayers = {};
-      const legendDiv = document.getElementById("legend");
-      const showAllBtn = document.getElementById("showAllBtn");
-
-      // 🚍 Draw all routes
-      jeepneys.forEach((jeep, index) => {
-        if (jeep.start_lat && jeep.start_lng && jeep.end_lat && jeep.end_lng) {
-          const color = jeepneyColors[index % jeepneyColors.length];
-
-          // Routing line
-          const route = L.Routing.control({
-            waypoints: [
-              L.latLng(jeep.start_lat, jeep.start_lng),
-              L.latLng(jeep.end_lat, jeep.end_lng),
-            ],
-            addWaypoints: false,
-            draggableWaypoints: false,
-            fitSelectedRoutes: false,
-            show: false,
-            lineOptions: {
-              styles: [{ color, weight: 5, opacity: 0.9 }],
-            },
-            createMarker: function () {
-              return null;
-            },
-          }).addTo(map);
-
-          routeLayers[jeep.jeepney_name] = route;
-
-          // 🟩 Add to legend
-          const legendItem = document.createElement("div");
-          legendItem.classList.add("legend-item");
-          legendItem.innerHTML = `
-            <div style="display:flex;align-items:center;">
-              <div class="color-box" style="background:${color}"></div>
-              <span>${jeep.jeepney_name}</span>
-            </div>
-          `;
-          legendItem.addEventListener("click", () => {
-            Object.values(routeLayers).forEach((r) => map.removeControl(r));
-            route.addTo(map);
-          });
-          legendDiv.insertBefore(legendItem, showAllBtn);
-        }
-      });
-
-      // 🟦 Show all button
-      showAllBtn.addEventListener("click", () => {
-        Object.values(routeLayers).forEach((r) => r.addTo(map));
-      });
-
-      // 🟨 Click from bottom list to highlight that route
-      document.querySelectorAll(".jeep-item").forEach((item) => {
-        item.addEventListener("click", () => {
-          const name = item.dataset.jeep;
-          Object.values(routeLayers).forEach((r) => map.removeControl(r));
-          if (routeLayers[name]) routeLayers[name].addTo(map);
-        });
-      });
-
-      // Show all on load
-      Object.values(routeLayers).forEach((r) => r.addTo(map));
-    });
-  </script>
+  <!-- 📜 JS -->
+  <script src="{{ url_for('static', filename='js/routes.js') }}"></script>
 </body>
 </html>

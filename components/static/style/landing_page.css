@@ -1,120 +1,148 @@
  
- 
- body {
-    margin:0;
-    font-family:"Poppins", sans-serif;
-    background-color: #f8fbfb;
-    color: #333;
- }
- 
- .nav-container{
-    background-color: #cce6e8;
-    border-radius: 10px;
-    padding: 15px 40px;
-    margin: 20px auto;
-    width: 93%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
- }
-
- .logo {
-    font-size: 40px;
-    font-weight: bold ;
-    color: #0a3034;
- }
- 
- .links {
-    text-decoration: none;
-    text-align:center ;
-    margin-left:30px;
-    font-weight:500;
-    display: flex;
-    gap: 100px;
+/* 🧭 Navbar */
+.nav-container {
+  background-color: #bde0e2;
+  border-radius: 10px;
+  padding: 15px 40px;
+  margin-bottom: 10px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.display{
-    display:flex;
-    justify-content: center;
-    align-items:center;
-    gap: 10px;
-    width:100%;
-    margin: 40px auto;
-    padding: 5px;
+.logo {
+  width: 200px;
+  height: auto;
+  text-align: center;
+  margin-right: 10px;
+  font-weight: bold;
+  color: #0a3034;
 }
 
-.display-text{
-    flex: 2;
+.links {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
 }
 
-.display-text h2{
-    text-align:center;
-    font-size: 50px;
-    color:#000000;
-    margin-bottom: 0.1em;
-    margin-left: 300px;
+.links a {
+  text-decoration: none;
+  color: #004d4d;
+  font-weight: bold;
+  margin: 0 15px;
+  transition: color 0.3s;
 }
 
-.display-text h1{
-    text-align:center;
-    font-size: 40px;
-    color:#0097a7;;
-    margin-top: 0px;
-    margin-left: 300px;
+.links a:hover {
+  color: #008080;
 }
 
-.display-text p{
-    text-align:center;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size:16px;
-    margin: 0.2em 0;
-    color: #111;
-    margin-left: 300px;
-    justify-content: center;
+/* 🖼️ Display Section */
+.display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 20px;
 }
 
-.login-btn{
-    background-color: #4db6ac; 
-    color: white;
-    padding: 15px 45px;
-    border: none;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    transition: background-color 0.3s ease; 
-    margin-left: 400px;
+.display-text {
+  flex: 1;
 }
 
-.login-btn:hover{
-    background-color: #399b91;  
+.display-text h2 {
+  text-align: left;
+  font-size: 50px;
+  color: #000;
+  margin-bottom: 0.2em;
 }
 
-.image-container img{
-    background-size:cover;
-    width: 1100px;
-    height: 300p;
-    position:ralative;
-    top: -50px;
-    transition: tranform 0.3s ease;
-    
+.display-text h1 {
+  text-align: left;
+  font-size: 40px;
+  color: #0097a7;
+  margin-top: 0;
 }
 
-.image-container{
-    display: flex;
-    flex: 1.5;
+.display-text p {
+  text-align: left;
+  font-size: 16px;
+  color: #111;
+  margin: 0.5em 0;
 }
 
-.about{
-    background-color: #e6efef;
-    border-radius: 12px;
-    width: 80%;
-    margin: 40px auto;
-    padding: 25px;
+/* 🟩 Login Button */
+.login-btn {
+  background-color: #4db6ac;
+  color: white;
+  padding: 15px 45px;
+  border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 15px;
+}
+
+.login-btn:hover {
+  background-color: #399b91;
+  transform: scale(1.05);
+}
+
+/* 🚌 Image Section */
+.image-container {
+  flex: 1.2;
+  display: flex;
+  justify-content: center;
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image-container img:hover {
+  transform: scale(1.02);
+}
+
+/* 💬 About Section */
+.about {
+  background-color: #e6efef;
+  border-radius: 12px;
+  width: 80%;
+  margin: 40px auto;
+  padding: 25px;
+  text-align: center;
+  font-size: 15px;
+  color: #333;
+}
+
+/* 📱 Responsive Fix */
+@media (max-width: 900px) {
+  .display {
+    flex-direction: column-reverse;
     text-align: center;
-    font-size: 15px;
-    color: #333;
+  }
+
+  .display-text h2,
+  .display-text h1,
+  .display-text p {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .login-btn {
+    margin-left: 0;
+  }
+
+  .image-container img {
+    max-width: 400px;
+  }
 }
-            

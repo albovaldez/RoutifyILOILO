@@ -3,41 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/login.css') }}">
 
 </head>
 
 <body>
-    <h1>Routify ILOILO</h1>
-    <h2>Log in </h2>
-    <br>
-    <a href="{{url_for('combo.landing_page')}}">BACK</a>
+    <div class="login-container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">Routify <span>ILOILO</span></h1>
+        </header>
 
+        <!-- Login Box -->
+        <div class="login-box">
+            <h2>Log in</h2>
 
-        <form action="{{ url_for('auth.login')}}" method = "POST" class=" login-form ">
+            <form action="{{ url_for('auth.login') }}" method="POST" class="login-form">
 
-            <label>Email:</label>
-            <input type ="email" id="email_inp" name="email_inp" placeholder="email">
-            <br></br>
+                <div class="input-group">
+                    <label for="email_inp">Email</label>
+                    <input type="email" id="email_inp" name="email_inp" placeholder="Enter your email" required>
+                </div>
 
-            <label>Password:</label>
-            <input type = "password" id="pass_id" name="pass_inp" placeholder="password">
-            <br></br>
+                <div class="input-group">
+                    <label for="pass_inp">Password</label>
+                    <input type="password" id="pass_inp" name="pass_inp" placeholder="Enter your password" required>
+                </div>
 
-            <button type="submit" value="Login " >Log in</a></button>
-            <br>
-        </form>
+                <div class="forgot">
+                    <a href="#">Forgot password?</a>
+                </div>
 
-        {%with message = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {%for category, message in messages %}
-                    <div class = "alert alert -{{ category }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+                <button type="submit" class="login-btn">Log in</button>
 
-        <p>Don't have an account? <a href="{{ url_for ('auth.register')}}"> Create account</a></p>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
 
-
-
+                <p class="signup-text">
+                    Don’t have an account? 
+                    <a href="{{ url_for('auth.register') }}">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>     
