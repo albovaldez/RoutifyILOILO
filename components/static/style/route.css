@@ -10,6 +10,35 @@
   align-items: center;
 }
 
+/* =========================================================
+   🔗 NAVIGATION LINKS
+   ========================================================= */
+.links {  
+  display: flex;
+  align-items: center;
+  gap: 100px; /* controls space between Home and Routes */
+  margin-left: auto; /* pushes links to the right */
+  margin-right: 25px; /* brings them closer to the profile */
+}
+
+.links a {  
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  text-decoration: none; 
+  color: #004d4d; 
+  font-weight: bold; 
+  display: flex;
+  align-items: center;
+  gap: 6px; /* spacing between icon and text */
+  transition: color 0.3s ease;  
+}
+
+.links a:hover { 
+  color: #008080; 
+}
+
+
+
 /* 👤 Profile Dropdown (Right Side) */
 .profile-dropdown {
   position: relative;
@@ -36,7 +65,7 @@
 .dropdown-content {
   position: absolute;
   top: 40px;
-  right: 0;
+  right: -0;
   background-color: #fff;
   min-width: 180px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -70,21 +99,6 @@
 }
 
 
-
-.links a { 
-      font-family: "Poppins", sans-serif;
-      text-align: center;
-      margin-left: 100px; 
-      text-decoration: none; 
-      color: #004d4d; 
-      font-weight: bold; 
-    }
-
-    .links a:hover { 
-      color: #008080; 
-    }
-
-
 /* 🗺️ Map */
 #map {
   position: relative;
@@ -105,7 +119,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   padding: 10px 15px;
   font-size: 14px;
-  max-height: 240px;
+  max-height: 600px;
   overflow-y: auto;
   z-index: 1000;
   width: 180px;
@@ -158,27 +172,50 @@
   transform: scale(1.03);
 }
 
-/* 🟨 Jeepney List */
+/* =========================================================
+   🚐 Jeepney List Grid Layout
+   ========================================================= */
 .jeep-list {
-  margin-top: 25px;
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  max-height: 300px;
-  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 3 columns */
+  grid-auto-rows: minmax(100px, auto);   /* 4 rows (auto adjusts height) */
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  justify-items: stretch;
 }
+
+/* 🚌 Individual Jeepney Card */
 .jeep-item {
-  margin-bottom: 10px;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  background-color: #77c5ca;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+  transition: transform 0.2s ease, background-color 0.2s ease;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  line-height: 1.6;
 }
+
+/* Hover animation */
 .jeep-item:hover {
-  background-color: #eef9f9;
-  transform: translateX(4px);
+  background-color: #21a1b8;
+  transform: scale(1.03);
 }
+
+/* Text styles */
+.jeep-item strong {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.jeep-item br {
+  line-height: 2;
+}
+
 
 /* 📜 Footer */
 .footer {

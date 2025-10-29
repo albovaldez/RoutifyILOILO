@@ -1,148 +1,825 @@
  
-/* 🧭 Navbar */
-.nav-container {
-  background-color: #bde0e2;
-  border-radius: 10px;
-  padding: 15px 40px;
-  margin-bottom: 10px;
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* General Reset */
+* {
+  margin: 5;
+  padding: 0;   
+  box-sizing: border-box;
 }
 
-.logo {
-  width: 200px;
-  height: auto;
-  text-align: center;
-  margin-right: 10px;
-  font-weight: bold;
-  color: #0a3034;
-}
-
-.links {
+body {
   font-family: "Poppins", sans-serif;
-  text-align: center;
-}
-
-.links a {
-  text-decoration: none;
-  color: #004d4d;
-  font-weight: bold;
-  margin: 0 15px;
-  transition: color 0.3s;
-}
-
-.links a:hover {
-  color: #008080;
-}
-
-/* 🖼️ Display Section */
-.display {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  width: 100%;
-  margin: 40px auto;
-  padding: 20px;
-}
-
-.display-text {
-  flex: 1;
-}
-
-.display-text h2 {
-  text-align: left;
-  font-size: 50px;
-  color: #000;
-  margin-bottom: 0.2em;
-}
-
-.display-text h1 {
-  text-align: left;
-  font-size: 40px;
-  color: #0097a7;
-  margin-top: 0;
-}
-
-.display-text p {
-  text-align: left;
-  font-size: 16px;
-  color: #111;
-  margin: 0.5em 0;
-}
-
-/* 🟩 Login Button */
-.login-btn {
-  background-color: #4db6ac;
-  color: white;
-  padding: 15px 45px;
-  border: none;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-top: 15px;
-}
-
-.login-btn:hover {
-  background-color: #399b91;
-  transform: scale(1.05);
-}
-
-/* 🚌 Image Section */
-.image-container {
-  flex: 1.2;
-  display: flex;
-  justify-content: center;
-}
-
-.image-container img {
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  border-radius: 12px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.image-container img:hover {
-  transform: scale(1.02);
-}
-
-/* 💬 About Section */
-.about {
-  background-color: #e6efef;
-  border-radius: 12px;
-  width: 80%;
-  margin: 40px auto;
-  padding: 25px;
-  text-align: center;
-  font-size: 15px;
+  background-color: #ffffff;
   color: #333;
 }
 
-/* 📱 Responsive Fix */
+/* 🧭 Navbar */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #cce6e8;
+  padding: 15px 50px;
+  border-radius: 20px
+
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #000;
+}
+
+.logo span {
+    font-weight: 400;
+}
+
+.links a { 
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  margin-left: 100px; 
+  text-decoration: none; 
+  color: #004d4d; 
+  font-weight: bold; 
+}
+
+.links a:hover { 
+  color: #008080; 
+}
+    
+/* ==== DISPLAY SECTION ==== */
+.display {
+  position: relative;
+  text-align: center;
+  padding: 150px 20px;
+  overflow: hidden;
+}
+
+
+/* Text content */
+.display-text {
+  position: relative;
+  z-index: 1;
+}
+
+.display-text h2 {
+  margin-top: -100px;
+  font-size: 5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px; 
+}
+
+.display-text h1 {
+  margin-top: 0px;
+  font-size: 3rem;
+  color: #52b3a0;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.display-text p {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.login-btn {
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #52b3a0;
+  color: #fff;
+  padding: 15px 50px;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #3d9d8b;
+}
+
+
+
+/* 📱 Responsive layout */
 @media (max-width: 900px) {
   .display {
-    flex-direction: column-reverse;
+    flex-direction: column;
     text-align: center;
-  }
-
-  .display-text h2,
-  .display-text h1,
-  .display-text p {
-    text-align: center;
-    margin-left: 0;
-  }
-
-  .login-btn {
-    margin-left: 0;
-  }
-
-  .image-container img {
-    max-width: 400px;
   }
 }
+
+
+
+/* ℹ️ About Section */
+.about {
+  background-color: #e8f3f3;
+  margin: 50px auto;
+  padding: 20px 40px;
+  border-radius: 10px;
+  max-width: 9000x;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
+}
+
+
+
+
+
+
+
+
+.features-section {
+  background-color: #197c7c;     /* teal background like in the image */
+  padding: 80px 0;
+  text-align: center;
+  color: #fff;
+}
+
+.features-container {
+  background-color: #b7d9d8;     /* light teal inner box */
+  border-radius: 20px;
+  padding: 50px 40px;
+  width: 85%;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.feature-box {
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
+  text-align: center;
+  color: #000;
+}
+
+.feature-box i {
+  font-size: 40px;
+  color: #004e4e;
+  margin-bottom: 15px;
+}
+
+.feature-box h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.feature-box p {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.trusted-text {
+  margin-top: 40px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+.smart-ride-section {
+  background-color: #197c7c;   /* same teal background */
+  color: #fff;
+  text-align: center;
+  padding: 80px 0;
+}
+
+.smart-ride-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+.ride-steps {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.step {
+  max-width: 220px;
+  text-align: center;
+}
+
+.icon-circle {
+  background-color: #b7d9d8;    /* same light teal from previous box */
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+}
+
+.icon-circle i {
+  font-size: 40px;
+  color: #0a3a3a;
+}
+
+.step h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.step p {
+  font-size: 0.95rem;
+  color: #e5e5e5;
+}
+
+/* CTA button */
+.app-btn {
+  background-color: #000;
+  color: #fff;
+  padding: 14px 36px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.app-btn:hover {
+  background-color: #333;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .ride-steps {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.routes-section {
+  background-color: #fff;
+  padding: 60px 80px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Header row */
+.routes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e0e0e0;
+  padding: 10px 20px;
+}
+
+.routes-header h3 {
+  margin: 0;
+  color: #333;
+  font-weight: 600;
+}
+
+.routes-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #222;
+  text-align: right;
+  letter-spacing: 0.5px;
+}
+
+/* Container with two sections */
+.routes-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 25px;
+}
+
+/* Left box: gradient + options */
+.route-finder {
+  flex: 1;
+  background: linear-gradient(to bottom right, #5ac2c2, #197c7c);
+  color: white;
+  padding: 30px;
+  border-radius: 6px;
+}
+
+.route-finder h4 {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  color: #fff;
+  text-align: left;
+}
+
+.route-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 25px;
+}
+
+.route-list li {
+  margin: 10px 0;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.route-list input[type="checkbox"] {
+  accent-color: #007a7a;
+  width: 18px;
+  height: 18px;
+}
+
+/* Button */
+.route-btn {
+  background-color: #004d4d;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.route-btn:hover {
+  background-color: #003a3a;
+}
+
+/* Right side: map */
+.map-box {
+  flex: 1;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Responsive layout */
+@media (max-width: 900px) {
+  .routes-container {
+    flex-direction: column;
+  }
+}
+
+
+
+/* 🗺️ ROUTE SECTION */
+.route-section {
+  background: linear-gradient(to bottom, #2e8a89, #007a7a);
+  padding: 50px 70px;
+  color: #fff;
+}
+
+/* 🔘 Top Inputs */
+.route-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.vehicle-input {
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: none;
+  width: 320px;
+  font-size: 1rem;
+  outline: none;
+  background-color: #f4f9f9;
+}
+
+.optimize-btn {
+  background-color: #004f4f;
+  border: none;
+  color: white;
+  border-radius: 25px;
+  padding: 12px 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.optimize-btn:hover {
+  background-color: #003f3f;
+}
+
+/* 📍 Buttons (Start / End) */
+.route-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.start-btn, .end-btn {
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-weight: 600;
+  background-color: #e8f7f7;
+  color: #000;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  transition: 0.3s;
+}
+
+.start-btn:hover, .end-btn:hover {
+  background-color: #cde6e7;
+}
+
+/* 🗺️ Map + Route Info Layout */
+.map-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.optimize-box {
+  background-color: #86c0c0;
+  color: #000;
+  border-radius: 20px;
+  padding: 30px;
+  width: 500px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+.optimize-box h3 {
+  text-align: left;
+  margin-bottom: 15px;
+  color: #004f4f;
+}
+
+.optimize-box input {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #f8fbfb;
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* 🗺️ Map Image */
+.map img {
+  width: 500px;
+  height: 390px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* 🚌 TRANSPORT SECTION */
+.transport-section {
+  background-color: #2e8a89;
+  padding: 60px 80px;
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  flex-wrap: wrap;
+  color: #fff;
+}
+
+.transport h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.vehicle-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.vehicle-gallery img {
+  width: 260px;
+  height: 190px;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.vehicle-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .map-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .vehicle-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .map img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   📞 CONTACT SECTION
+   ========================================================= */
+.contact-section {
+  background-color: #ffffff;
+  padding: 60px 80px;
+  font-family: "Poppins", sans-serif;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+/* Left Form */
+.contact-form {
+  flex: 1;
+  min-width: 350px;
+}
+
+.contact-form h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.contact-form form input,
+.contact-form form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+}
+
+.contact-form button {
+  background: linear-gradient(to right, #0fd1c7, #2bc5ba);
+  border: none;
+  padding: 12px 25px;
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  opacity: 0.9;
+}
+
+/* Right Info */
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.contact-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.contact-info img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.info-list p {
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.info-list i {
+  margin-right: 10px;
+  color: #197c7c;
+  font-size: 1.1rem;
+}
+
+/* Social Icons */
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons a {
+  color: #000;
+  font-size: 1.5rem;
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #197c7c;
+}
+
+/* =========================================================
+   📞 CONTACT SECTION
+   ========================================================= */
+.contact-section {
+  background-color: #ffffff;
+  padding: 60px 80px;
+  font-family: "Poppins", sans-serif;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+/* Left Form */
+.contact-form {
+  flex: 1;
+  min-width: 350px;
+}
+
+.contact-form h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.contact-form form input,
+.contact-form form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+}
+
+.contact-form button {
+  background: linear-gradient(to right, #0fd1c7, #2bc5ba);
+  border: none;
+  padding: 12px 25px;
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  opacity: 0.9;
+}
+
+/* Right Info */
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.contact-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+
+.info-list p {
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.info-list i {
+  margin-right: 10px;
+  color: #197c7c;
+  font-size: 1.1rem;
+}
+
+/* Social Icons */
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons a {
+  color: #000;
+  font-size: 1.5rem;
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #197c7c;
+}
+
+
+
+/* 📜 Footer */
+.footer {
+  background-color: #a7d6d8;
+  padding: 15px;
+  text-align: center;
+  color: #00363a;
+  font-size: 0.9em;
+}
+
+.footer a {
+  color: #00363a;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* ✨ Intro animation for welcome text */
+.display-text {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeSlideIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional: smooth delay for button */
+.display-text .login-btn {
+  opacity: 0;
+  animation: fadeInButton 1s ease-out 1.3s forwards;
+}
+
+@keyframes fadeInButton {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+    
+

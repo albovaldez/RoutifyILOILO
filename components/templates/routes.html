@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style/route.css') }}" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
@@ -20,8 +22,13 @@
   <div class="title"><h1>Routify ILOILO</h1></div>
 
   <div class="links">
-    <a href="{{ url_for('user.home_page') }}">Home</a>
-    <a href="{{ url_for('user.route_page') }}">Routes</a>
+  <a href="{{ url_for('user.home_page') }}">
+    <i class="fa-solid fa-house"></i> Home
+  </a>
+  <a href="{{ url_for('user.route_page') }}">
+    <i class="fa-solid fa-route"></i> Routes
+  </a>
+</div>
 
 
     <!-- 👤 Profile Dropdown (Right side of Logout) -->
@@ -29,17 +36,12 @@
       <img src="{{ url_for('static', filename='image/profile.jpg') }}" alt="User" class="profile-img">
       <div class="dropdown-content">
         <a href="{{ url_for('user.profile') }}">View Profile</a>
-        <a href="{{ url_for('user.setting_page') }}">Account Settings</a>
         <a href="{{ url_for('auth.logout') }}">Logout</a>
       </div>
     </div>
   </div>
 </div>
 
-
-
-
-  <h2>🚌 All Jeepneys in Iloilo City</h2>
 
   <!-- 🗺️ Map -->
   <div id="map"></div>
@@ -60,10 +62,18 @@
     {% endfor %}
   </div>
 
-  <!-- ❤️ Footer -->
-  <div class="footer-text">
-    <p>Explore all jeepneys in the City of Love – Iloilo City 🏙️</p>
-  </div>
+  <!-- 📜 Footer -->
+  <footer class="footer">
+    <p>© 2025 Routify Iloilo. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Home</a> |
+      <a href="#">About</a> |
+      <a href="#">Route</a> |
+      <a href="#">Features</a> |
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
 
   <!-- 📜 JS -->
   <script src="{{ url_for('static', filename='js/routes.js') }}"></script>

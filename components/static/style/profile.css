@@ -1,40 +1,55 @@
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #f8fbfb;
-  text-align: center ;
+  background-color: #68a7ac;
+  text-align: center;
   padding: 30px;
 }
 
 .profile-container {
-  max-width: 400px;
+  max-width: 300px;
   margin: auto;
   background: white;
   border-radius: 15px;
-  padding: 20px;
+  padding: 20px 30px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* 🖼️ Profile picture stays centered */
 .profile-pic {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 15px;
+  border: 3px solid #cce6e8;
 }
 
+/* 🧾 Form layout */
 form {
-
   display: flex;
-  flex-direction:column;
-  gap: 5px;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left; /* Align text to left */
 }
 
+/* 🏷️ Label styling */
+form label {
+  font-weight: 500;
+  color: #004d4d;
+  margin-left: 4px;
+  margin-bottom: 2px;
+}
+
+/* 🔲 Input fields */
 input[type="text"], input[type="file"] {
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #080808;
   border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* 💾 Button */
 button {
   background-color: #3db2b2;
   color: white;
@@ -42,15 +57,22 @@ button {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  width: 100%;
 }
 
 button:hover {
   background-color: #2c8a8a;
 }
 
+/* ⬅️ Back link */
 .back-link {
   display: block;
   margin-top: 15px;
   text-decoration: none;
   color: #3db2b2;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  color: #2c8a8a;
 }

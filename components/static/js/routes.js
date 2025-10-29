@@ -7,6 +7,9 @@
     "#E53935", // Red
     "#FB8C00", // Orange
     "#8E24AA", // Purple
+    "#124603ff",
+    "#b44e75ff",
+    "#c9af3dff",
   ];
 
   // 🗺️ Initialize map
